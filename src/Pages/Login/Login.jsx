@@ -1,14 +1,16 @@
 import './Login.css'
 
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { useLogin } from '../../Hooks/useLogin';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {login, error, isPending} = useLogin();
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(email, password);
+    login(email, password);
   }
 
 
@@ -31,7 +33,15 @@ const Login = () => {
     </div>
     <input type="password" name="last-name" placeholder="Password" onChange={e=> setPassword(e.target.value)} value={password}/>
   </div>
-  <button className="ui primary button" type="submit">Login</button>
+  {!isPending  && <button className="ui primary button" type="submit">Login</button>}
+  {isPending && <button className="ui primary elastic loading button" disabled>Loading</button>}
+  { error && <div className="ui negative message">
+                <i className="close icon"></i>
+                <div className="header">
+                  Try Again, There is a Error! 
+                </div>
+                <p>{error}</p>
+            </div>}
 </form>
 </div>
   )

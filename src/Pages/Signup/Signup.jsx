@@ -3,6 +3,7 @@ import './Signup.css'
 import React, {useState} from 'react';
 import { useSignup } from '../../Hooks/useSignup';
 
+
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -53,8 +54,8 @@ const Signup = () => {
   </div>
   <div className="field">
     <div className="ui checkbox">
-      <input type="checkbox" tabIndex="0" onClick={(e) => {selectShortlistedApplicant(e)}}/>
-      <label>I agree to the Terms and Conditions</label>
+      <input name='term' type="checkbox" tabIndex="0" onClick={(e) => {selectShortlistedApplicant(e)}}/>
+      <label htmlFor='term'>I agree to the Terms and Conditions</label>
     </div>
   </div>
   {!checked && <button className="ui primary button" disabled type="submit">SignUp</button>}
